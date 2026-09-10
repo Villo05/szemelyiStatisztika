@@ -1,17 +1,22 @@
 package main;
 
-public class SzemelyiStatisztika {
+import java.util.Random;
 
+public class SzemelyiStatisztika {
+    
+    public static final Random rnd = new Random();
+    
     public static void main(String[] args) {
         String nev = "Villő";
         int szulEv = 2005;
         
+    
         /* metódusok: 
         köszöntés
         életkor: 2026 - 
         nyugdíjig hátralévő évek száma: 44*/
         try{
-            String adat = "Szia %s!".formatted(nev);
+            String adat = koszontes(nev);
             adat += "\nÉletkor: %d év".formatted(eletkor(szulEv));
             adat += "\nNyugdíjig hátralévő évek száma: %d év".formatted(nyugdijig(szulEv));
             megjelenites(adat);
@@ -25,9 +30,17 @@ public class SzemelyiStatisztika {
         System.out.println(adat); 
     }
     
-     public static void koszontes(String nev) {
-        System.out.println("Szia, " + nev + "!");
+    public static String koszontes(String nev) {
+        String[] koszontesek = {
+            "Szia",
+            "Helló",
+            "Halihó"
+        };
+        int index = rnd.nextInt(koszontesek.length);
+        return koszontesek[index] + ", " + nev + "!";
     }
+    
+
 
     public static int eletkor(int szulEv) {
         if (szulEv < 1900) {
@@ -41,4 +54,6 @@ public class SzemelyiStatisztika {
     public static int nyugdijig(int szulEv) {
         return 65 - eletkor(szulEv);
     }
+
+    
 }
